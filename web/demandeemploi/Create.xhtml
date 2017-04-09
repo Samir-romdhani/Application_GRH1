@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DemandeemploiCreateDlg" widgetVar="DemandeemploiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDemandeemploiTitle}">
+            <h:form id="DemandeemploiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeemploiController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDemandeemploiLabel_idDemandeemplois}" for="idDemandeemplois" />
+                        <p:inputText id="idDemandeemplois" value="#{demandeemploiController.selected.idDemandeemplois}" title="#{bundle.CreateDemandeemploiTitle_idDemandeemplois}" required="true" requiredMessage="#{bundle.CreateDemandeemploiRequiredMessage_idDemandeemplois}"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeemploiLabel_id}" for="id" />
+                        <p:selectOneMenu id="id" value="#{demandeemploiController.selected.id}" required="true" requiredMessage="#{bundle.EditDemandeemploiRequiredMessage_id}">
+                            <f:selectItems value="#{condidatController.itemsAvailableSelectOne}"
+                                           var="idItem"
+                                           itemValue="#{idItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDemandeemploiLabel_etat}" for="etat" />
+                        <p:selectOneMenu id="etat" value="#{demandeemploiController.selected.etat}" required="true" requiredMessage="#{bundle.EditDemandeemploiRequiredMessage_etat}">
+                            <f:selectItems value="#{etatController.itemsAvailableSelectOne}"
+                                           var="etatItem"
+                                           itemValue="#{etatItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{demandeemploiController.create}" value="#{bundle.Save}" update="display,:DemandeemploiListForm:datalist,:growl" oncomplete="handleSubmit(args,'DemandeemploiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DemandeemploiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployeEditDlg" widgetVar="EmployeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEmployeTitle}">
+            <h:form id="EmployeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_userId}" for="userId" />
+                        <p:inputText id="userId" value="#{employeController.selected.userId}" title="#{bundle.EditEmployeTitle_userId}" required="true" requiredMessage="#{bundle.EditEmployeRequiredMessage_userId}"/>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{employeController.selected.nom}" title="#{bundle.EditEmployeTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{employeController.selected.prenom}" title="#{bundle.EditEmployeTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{employeController.selected.mail}" title="#{bundle.EditEmployeTitle_mail}" />
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_datedenaissance}" for="datedenaissance" />
+                        <p:calendar id="datedenaissance" pattern="MM/dd/yyyy" value="#{employeController.selected.datedenaissance}" title="#{bundle.EditEmployeTitle_datedenaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_datedetravail}" for="datedetravail" />
+                        <p:calendar id="datedetravail" pattern="MM/dd/yyyy" value="#{employeController.selected.datedetravail}" title="#{bundle.EditEmployeTitle_datedetravail}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_motdepass}" for="motdepass" />
+                        <p:inputText id="motdepass" value="#{employeController.selected.motdepass}" title="#{bundle.EditEmployeTitle_motdepass}" />
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_compte}" for="compte" />
+                        <p:selectOneMenu id="compte" value="#{employeController.selected.compte}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{compteController.itemsAvailableSelectOne}"
+                                           var="compteItem"
+                                           itemValue="#{compteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_chef}" for="chef" />
+                        <p:selectOneMenu id="chef" value="#{employeController.selected.chef}" required="true" requiredMessage="#{bundle.EditEmployeRequiredMessage_chef}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="chefItem"
+                                           itemValue="#{chefItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_idDepartement}" for="idDepartement" />
+                        <p:selectOneMenu id="idDepartement" value="#{employeController.selected.idDepartement}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departementController.itemsAvailableSelectOne}"
+                                           var="idDepartementItem"
+                                           itemValue="#{idDepartementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEmployeLabel_identificationDuPoste}" for="identificationDuPoste" />
+                        <p:selectOneMenu id="identificationDuPoste" value="#{employeController.selected.identificationDuPoste}" required="true" requiredMessage="#{bundle.EditEmployeRequiredMessage_identificationDuPoste}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{metierController.itemsAvailableSelectOne}"
+                                           var="identificationDuPosteItem"
+                                           itemValue="#{identificationDuPosteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{employeController.update}" value="#{bundle.Save}" update="display,:EmployeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmployeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

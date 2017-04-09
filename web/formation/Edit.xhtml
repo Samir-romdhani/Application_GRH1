@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FormationEditDlg" widgetVar="FormationEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFormationTitle}">
+            <h:form id="FormationEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formationController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFormationLabel_idF}" for="idF" />
+                        <p:inputText id="idF" value="#{formationController.selected.idF}" title="#{bundle.EditFormationTitle_idF}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_idF}"/>
+                        <p:outputLabel value="#{bundle.EditFormationLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{formationController.selected.libelle}" title="#{bundle.EditFormationTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditFormationLabel_dateCreation}" for="dateCreation" />
+                        <p:calendar id="dateCreation" pattern="MM/dd/yyyy" value="#{formationController.selected.dateCreation}" title="#{bundle.EditFormationTitle_dateCreation}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_dateCreation}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFormationLabel_dateFormation}" for="dateFormation" />
+                        <p:calendar id="dateFormation" pattern="MM/dd/yyyy" value="#{formationController.selected.dateFormation}" title="#{bundle.EditFormationTitle_dateFormation}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_dateFormation}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFormationLabel_etat}" for="etat" />
+                        <p:selectOneMenu id="etat" value="#{formationController.selected.etat}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etatController.itemsAvailableSelectOne}"
+                                           var="etatItem"
+                                           itemValue="#{etatItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormationLabel_userId}" for="userId" />
+                        <p:selectOneMenu id="userId" value="#{formationController.selected.userId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="userIdItem"
+                                           itemValue="#{userIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{formationController.update}" value="#{bundle.Save}" update="display,:FormationListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FormationEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FormationEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

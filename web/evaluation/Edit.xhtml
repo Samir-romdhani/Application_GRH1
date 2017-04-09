@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EvaluationEditDlg" widgetVar="EvaluationEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEvaluationTitle}">
+            <h:form id="EvaluationEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{evaluationController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEvaluationLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{evaluationController.selected.note}" title="#{bundle.EditEvaluationTitle_note}" />
+                        <p:outputLabel value="#{bundle.EditEvaluationLabel_formation}" for="formation" />
+                        <p:selectOneMenu id="formation" value="#{evaluationController.selected.formation}" required="true" requiredMessage="#{bundle.EditEvaluationRequiredMessage_formation}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{formationController.itemsAvailableSelectOne}"
+                                           var="formationItem"
+                                           itemValue="#{formationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEvaluationLabel_competence}" for="competence" />
+                        <p:selectOneMenu id="competence" value="#{evaluationController.selected.competence}" required="true" requiredMessage="#{bundle.EditEvaluationRequiredMessage_competence}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{competenceController.itemsAvailableSelectOne}"
+                                           var="competenceItem"
+                                           itemValue="#{competenceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEvaluationLabel_employe}" for="employe" />
+                        <p:selectOneMenu id="employe" value="#{evaluationController.selected.employe}" required="true" requiredMessage="#{bundle.EditEvaluationRequiredMessage_employe}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="employeItem"
+                                           itemValue="#{employeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{evaluationController.update}" value="#{bundle.Save}" update="display,:EvaluationListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EvaluationEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EvaluationEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

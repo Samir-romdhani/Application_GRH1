@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MetierEditDlg" widgetVar="MetierEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMetierTitle}">
+            <h:form id="MetierEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{metierController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMetierLabel_identificationDuPoste}" for="identificationDuPoste" />
+                        <p:inputText id="identificationDuPoste" value="#{metierController.selected.identificationDuPoste}" title="#{bundle.EditMetierTitle_identificationDuPoste}" required="true" requiredMessage="#{bundle.EditMetierRequiredMessage_identificationDuPoste}"/>
+                        <p:outputLabel value="#{bundle.EditMetierLabel_missionDuPoste}" for="missionDuPoste" />
+                        <p:inputText id="missionDuPoste" value="#{metierController.selected.missionDuPoste}" title="#{bundle.EditMetierTitle_missionDuPoste}" required="true" requiredMessage="#{bundle.EditMetierRequiredMessage_missionDuPoste}"/>
+                        <p:outputLabel value="#{bundle.EditMetierLabel_nomDuPoste}" for="nomDuPoste" />
+                        <p:inputText id="nomDuPoste" value="#{metierController.selected.nomDuPoste}" title="#{bundle.EditMetierTitle_nomDuPoste}" required="true" requiredMessage="#{bundle.EditMetierRequiredMessage_nomDuPoste}"/>
+                        <p:outputLabel value="#{bundle.EditMetierLabel_descriptionPoste}" for="descriptionPoste" />
+                        <p:inputText id="descriptionPoste" value="#{metierController.selected.descriptionPoste}" title="#{bundle.EditMetierTitle_descriptionPoste}" required="true" requiredMessage="#{bundle.EditMetierRequiredMessage_descriptionPoste}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{metierController.update}" value="#{bundle.Save}" update="display,:MetierListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MetierEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MetierEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompetenceViewDlg" widgetVar="CompetenceViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCompetenceTitle}">
+            <h:form id="CompetenceViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{competenceController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCompetenceLabel_idC}"/>
+                        <h:outputText value="#{competenceController.selected.idC}" title="#{bundle.ViewCompetenceTitle_idC}"/>
+                        <h:outputText value="#{bundle.ViewCompetenceLabel_descriptions}"/>
+                        <h:outputText value="#{competenceController.selected.descriptions}" title="#{bundle.ViewCompetenceTitle_descriptions}"/>
+                        <h:outputText value="#{bundle.ViewCompetenceLabel_idF}"/>
+                        <h:outputText value="#{competenceController.selected.idF}" title="#{bundle.ViewCompetenceTitle_idF}"/>
+                        <h:outputText value="#{bundle.ViewCompetenceLabel_userId}"/>
+                        <h:outputText value="#{competenceController.selected.userId}" title="#{bundle.ViewCompetenceTitle_userId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CompetenceViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

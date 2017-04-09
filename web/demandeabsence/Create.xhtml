@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DemandeabsenceCreateDlg" widgetVar="DemandeabsenceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDemandeabsenceTitle}">
+            <h:form id="DemandeabsenceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeabsenceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_idDemande}" for="idDemande" />
+                        <p:inputText id="idDemande" value="#{demandeabsenceController.selected.idDemande}" title="#{bundle.CreateDemandeabsenceTitle_idDemande}" required="true" requiredMessage="#{bundle.CreateDemandeabsenceRequiredMessage_idDemande}"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_datecreation}" for="datecreation" />
+                        <p:calendar id="datecreation" pattern="MM/dd/yyyy HH:mm:ss" value="#{demandeabsenceController.selected.datecreation}" title="#{bundle.EditDemandeabsenceTitle_datecreation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_datedebut}" for="datedebut" />
+                        <p:calendar id="datedebut" pattern="MM/dd/yyyy" value="#{demandeabsenceController.selected.datedebut}" title="#{bundle.EditDemandeabsenceTitle_datedebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_nombredejours}" for="nombredejours" />
+                        <p:inputText id="nombredejours" value="#{demandeabsenceController.selected.nombredejours}" title="#{bundle.CreateDemandeabsenceTitle_nombredejours}" required="true" requiredMessage="#{bundle.CreateDemandeabsenceRequiredMessage_nombredejours}"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_datefin}" for="datefin" />
+                        <p:calendar id="datefin" pattern="MM/dd/yyyy" value="#{demandeabsenceController.selected.datefin}" title="#{bundle.EditDemandeabsenceTitle_datefin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_commmentaire}" for="commmentaire" />
+                        <p:inputText id="commmentaire" value="#{demandeabsenceController.selected.commmentaire}" title="#{bundle.CreateDemandeabsenceTitle_commmentaire}" />
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_etat}" for="etat" />
+                        <p:selectOneMenu id="etat" value="#{demandeabsenceController.selected.etat}" >
+                            <f:selectItems value="#{etatController.itemsAvailableSelectOne}"
+                                           var="etatItem"
+                                           itemValue="#{etatItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDemandeabsenceLabel_userId}" for="userId" />
+                        <p:selectOneMenu id="userId" value="#{demandeabsenceController.selected.userId}" >
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="userIdItem"
+                                           itemValue="#{userIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{demandeabsenceController.create}" value="#{bundle.Save}" update="display,:DemandeabsenceListForm:datalist,:growl" oncomplete="handleSubmit(args,'DemandeabsenceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DemandeabsenceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

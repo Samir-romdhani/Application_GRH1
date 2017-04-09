@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployeViewDlg" widgetVar="EmployeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmployeTitle}">
+            <h:form id="EmployeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmployeLabel_userId}"/>
+                        <h:outputText value="#{employeController.selected.userId}" title="#{bundle.ViewEmployeTitle_userId}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_nom}"/>
+                        <h:outputText value="#{employeController.selected.nom}" title="#{bundle.ViewEmployeTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_prenom}"/>
+                        <h:outputText value="#{employeController.selected.prenom}" title="#{bundle.ViewEmployeTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_mail}"/>
+                        <h:outputText value="#{employeController.selected.mail}" title="#{bundle.ViewEmployeTitle_mail}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_datedenaissance}"/>
+                        <h:outputText value="#{employeController.selected.datedenaissance}" title="#{bundle.ViewEmployeTitle_datedenaissance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_datedetravail}"/>
+                        <h:outputText value="#{employeController.selected.datedetravail}" title="#{bundle.ViewEmployeTitle_datedetravail}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_motdepass}"/>
+                        <h:outputText value="#{employeController.selected.motdepass}" title="#{bundle.ViewEmployeTitle_motdepass}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_compte}"/>
+                        <h:outputText value="#{employeController.selected.compte}" title="#{bundle.ViewEmployeTitle_compte}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_chef}"/>
+                        <h:outputText value="#{employeController.selected.chef}" title="#{bundle.ViewEmployeTitle_chef}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_idDepartement}"/>
+                        <h:outputText value="#{employeController.selected.idDepartement}" title="#{bundle.ViewEmployeTitle_idDepartement}"/>
+                        <h:outputText value="#{bundle.ViewEmployeLabel_identificationDuPoste}"/>
+                        <h:outputText value="#{employeController.selected.identificationDuPoste}" title="#{bundle.ViewEmployeTitle_identificationDuPoste}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmployeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

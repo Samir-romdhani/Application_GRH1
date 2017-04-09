@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FormationViewDlg" widgetVar="FormationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFormationTitle}">
+            <h:form id="FormationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFormationLabel_idF}"/>
+                        <h:outputText value="#{formationController.selected.idF}" title="#{bundle.ViewFormationTitle_idF}"/>
+                        <h:outputText value="#{bundle.ViewFormationLabel_libelle}"/>
+                        <h:outputText value="#{formationController.selected.libelle}" title="#{bundle.ViewFormationTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewFormationLabel_dateCreation}"/>
+                        <h:outputText value="#{formationController.selected.dateCreation}" title="#{bundle.ViewFormationTitle_dateCreation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFormationLabel_dateFormation}"/>
+                        <h:outputText value="#{formationController.selected.dateFormation}" title="#{bundle.ViewFormationTitle_dateFormation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFormationLabel_etat}"/>
+                        <h:outputText value="#{formationController.selected.etat}" title="#{bundle.ViewFormationTitle_etat}"/>
+                        <h:outputText value="#{bundle.ViewFormationLabel_userId}"/>
+                        <h:outputText value="#{formationController.selected.userId}" title="#{bundle.ViewFormationTitle_userId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FormationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

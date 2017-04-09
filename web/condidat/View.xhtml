@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CondidatViewDlg" widgetVar="CondidatViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCondidatTitle}">
+            <h:form id="CondidatViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{condidatController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCondidatLabel_id}"/>
+                        <h:outputText value="#{condidatController.selected.id}" title="#{bundle.ViewCondidatTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_nom}"/>
+                        <h:outputText value="#{condidatController.selected.nom}" title="#{bundle.ViewCondidatTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_prenom}"/>
+                        <h:outputText value="#{condidatController.selected.prenom}" title="#{bundle.ViewCondidatTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_mail}"/>
+                        <h:outputText value="#{condidatController.selected.mail}" title="#{bundle.ViewCondidatTitle_mail}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_datedenaissance}"/>
+                        <h:outputText value="#{condidatController.selected.datedenaissance}" title="#{bundle.ViewCondidatTitle_datedenaissance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_scolarité}"/>
+                        <h:outputText value="#{condidatController.selected.scolarité}" title="#{bundle.ViewCondidatTitle_scolarité}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_competences}"/>
+                        <h:outputText value="#{condidatController.selected.competences}" title="#{bundle.ViewCondidatTitle_competences}"/>
+                        <h:outputText value="#{bundle.ViewCondidatLabel_certifications}"/>
+                        <h:outputText value="#{condidatController.selected.certifications}" title="#{bundle.ViewCondidatTitle_certifications}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CondidatViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CondidatEditDlg" widgetVar="CondidatEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCondidatTitle}">
+            <h:form id="CondidatEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{condidatController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{condidatController.selected.id}" title="#{bundle.EditCondidatTitle_id}" required="true" requiredMessage="#{bundle.EditCondidatRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{condidatController.selected.nom}" title="#{bundle.EditCondidatTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{condidatController.selected.prenom}" title="#{bundle.EditCondidatTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{condidatController.selected.mail}" title="#{bundle.EditCondidatTitle_mail}" />
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_datedenaissance}" for="datedenaissance" />
+                        <p:calendar id="datedenaissance" pattern="MM/dd/yyyy" value="#{condidatController.selected.datedenaissance}" title="#{bundle.EditCondidatTitle_datedenaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_scolarité}" for="scolarité" />
+                        <p:inputText id="scolarité" value="#{condidatController.selected.scolarité}" title="#{bundle.EditCondidatTitle_scolarité}" />
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_competences}" for="competences" />
+                        <p:inputText id="competences" value="#{condidatController.selected.competences}" title="#{bundle.EditCondidatTitle_competences}" />
+                        <p:outputLabel value="#{bundle.EditCondidatLabel_certifications}" for="certifications" />
+                        <p:inputText id="certifications" value="#{condidatController.selected.certifications}" title="#{bundle.EditCondidatTitle_certifications}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{condidatController.update}" value="#{bundle.Save}" update="display,:CondidatListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CondidatEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CondidatEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

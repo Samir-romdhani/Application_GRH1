@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MetierViewDlg" widgetVar="MetierViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMetierTitle}">
+            <h:form id="MetierViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{metierController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMetierLabel_identificationDuPoste}"/>
+                        <h:outputText value="#{metierController.selected.identificationDuPoste}" title="#{bundle.ViewMetierTitle_identificationDuPoste}"/>
+                        <h:outputText value="#{bundle.ViewMetierLabel_missionDuPoste}"/>
+                        <h:outputText value="#{metierController.selected.missionDuPoste}" title="#{bundle.ViewMetierTitle_missionDuPoste}"/>
+                        <h:outputText value="#{bundle.ViewMetierLabel_nomDuPoste}"/>
+                        <h:outputText value="#{metierController.selected.nomDuPoste}" title="#{bundle.ViewMetierTitle_nomDuPoste}"/>
+                        <h:outputText value="#{bundle.ViewMetierLabel_descriptionPoste}"/>
+                        <h:outputText value="#{metierController.selected.descriptionPoste}" title="#{bundle.ViewMetierTitle_descriptionPoste}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MetierViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

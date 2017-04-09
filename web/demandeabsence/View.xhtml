@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DemandeabsenceViewDlg" widgetVar="DemandeabsenceViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDemandeabsenceTitle}">
+            <h:form id="DemandeabsenceViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeabsenceController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_idDemande}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.idDemande}" title="#{bundle.ViewDemandeabsenceTitle_idDemande}"/>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_datecreation}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.datecreation}" title="#{bundle.ViewDemandeabsenceTitle_datecreation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_datedebut}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.datedebut}" title="#{bundle.ViewDemandeabsenceTitle_datedebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_nombredejours}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.nombredejours}" title="#{bundle.ViewDemandeabsenceTitle_nombredejours}"/>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_datefin}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.datefin}" title="#{bundle.ViewDemandeabsenceTitle_datefin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_commmentaire}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.commmentaire}" title="#{bundle.ViewDemandeabsenceTitle_commmentaire}"/>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_etat}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.etat}" title="#{bundle.ViewDemandeabsenceTitle_etat}"/>
+                        <h:outputText value="#{bundle.ViewDemandeabsenceLabel_userId}"/>
+                        <h:outputText value="#{demandeabsenceController.selected.userId}" title="#{bundle.ViewDemandeabsenceTitle_userId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DemandeabsenceViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
